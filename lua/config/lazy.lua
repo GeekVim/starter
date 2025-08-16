@@ -16,8 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    -- add PowerVim and import its plugins
-    { "PowerVim/LazyVim", import = "powervim.plugins" },
+    -- add GeekVim and import its plugins
+    { "GeekVim/LazyVim", import = "geekvim.plugins" },
     -- import/override with your plugins
     { import = "plugins" },
   },

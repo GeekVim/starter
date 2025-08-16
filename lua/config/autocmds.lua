@@ -3,5 +3,5 @@
 -- Add any additional autocmds here
 -- with `vim.api.nvim_create_autocmd`
 --
--- Or remove existing autocmds by their group name (which is prefixed with `powervim_` for the defaults)
--- e.g. vim.api.nvim_del_augroup_by_name("powervim_wrap_spell")
+-- Or remove existing autocmds by their group name (which is prefixed with `geekvim_` for the defaults)
+-- e.g. vim.api.nvim_del_augroup_by_name("geekvim_wrap_spell")
