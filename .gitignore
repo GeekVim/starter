@@ -3,21 +3,20 @@
 #########
 # Project
 #########
-tt.*
-.tests
-doc/tags
-debug
-.repro
-foo.*
-*.log
-data
 .luarc.json
-ftdetect/
-after/
-user/
-spell/
+/ftdetect/
+/after/
+/user/
+/spell/
+/.repro/
+/.tests/
+/build/
+/debug/
+/doc/tags
+foo.*
+node_modules
+tt.*
 lazy-lock.json
-
 
 #########
 # General
