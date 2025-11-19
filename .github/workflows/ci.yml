@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  ci:
+    uses: GeekVim/gh-lib/.github/workflows/ci.yml@main
+    secrets: inherit
+    with:
+      plugin: starter
+      repo: GeekVim/starter
