@@ -48,6 +48,7 @@ local poll
 ---@return uv.error.name|nil err_name
 function poll:start(events, callback) end
 
+
 --- Stop polling the file descriptor, the callback will no longer be called.
 ---
 ---@return 0|nil      success

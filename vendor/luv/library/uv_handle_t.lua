@@ -105,6 +105,7 @@ function handle:recv_buffer_size(size) end
 --- References are idempotent, that is, if a handle is already referenced calling this function again will have no effect.
 function handle:ref() end
 
+
 --- Gets or sets the size of the send buffer that the operating system uses for the
 --- socket.
 ---
@@ -124,6 +125,7 @@ function handle:ref() end
 ---@overload fun(self):(current_size:integer|nil, err:uv.error.message|nil, err_name:uv.error.name|nil)
 ---@overload fun(self, size: 0):(current_size:integer|nil, err:uv.error.message|nil, err_name:uv.error.name|nil)
 function handle:send_buffer_size(size) end
+
 
 --- Un-reference the given handle. References are idempotent, that is, if a handle
 --- is not referenced calling this function again will have no effect.

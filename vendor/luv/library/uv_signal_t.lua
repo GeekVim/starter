@@ -60,6 +60,7 @@ function signal:start(signum, callback) end
 ---@return uv.error.name|nil err_name
 function signal:start_oneshot(signum, callback) end
 
+
 --- Stop the handle, the callback will no longer be called.
 ---
 ---@return 0|nil      success

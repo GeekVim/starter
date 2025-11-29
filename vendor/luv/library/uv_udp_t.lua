@@ -16,6 +16,7 @@ local udp
 ---@return uv.error.name|nil err_name
 function udp:bind(host, port, flags) end
 
+
 --- Associate the UDP handle to a remote address and port, so every message sent by
 --- this handle is automatically sent to that destination.
 --

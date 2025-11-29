@@ -81,12 +81,14 @@
 ---@alias uv.errno.EXDEV           "EXDEV"           # cross-device link not permitted.
 ---@alias uv.errno.UNKNOWN         "UNKNOWN"         # unknown error.
 
+
 --- An error string with the format {name}: {message}
 ---
 --- * {name} is the error name provided internally by uv_err_name (e.g. "ENOENT")
 --- * {message} is a human-readable message provided internally by uv_strerror
 ---
 ---@alias uv.error.message string
+
 
 --- An error name string
 ---
@@ -171,6 +173,7 @@
 ---| "ETXTBSY"         # text file is busy
 ---| "EXDEV"           # cross-device link not permitted
 ---| "UNKNOWN"         # unknown error
+
 
 --- A table value which exposes error constants as a map, where the key is the error name (without the UV_ prefix) and its value is a negative number.
 ---

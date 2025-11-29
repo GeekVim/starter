@@ -23,9 +23,11 @@
 ---@field nvcsw    integer                    # voluntary context switches
 ---@field nivcsw   integer                    # involuntary context switches
 
+
 ---@alias uv.spawn.options.stdio.fd integer
 
 ---@alias uv.spawn.options.stdio.stream uv.uv_stream_t
+
 
 --- The `options.stdio` entries can take many shapes.
 ---
@@ -37,6 +39,7 @@
 ---| integer
 ---| uv.uv_stream_t
 ---| nil
+
 
 ---@class uv.spawn.options : table
 ---
@@ -67,6 +70,7 @@
 --- Set the file descriptors that will be made available to the child process. The convention is that the first entries are stdin, stdout, and stderr. (**Note**: On Windows, file descriptors after the third are available to the child process only if the child processes uses the MSVCRT runtime.)
 ---@field stdio { [1]: uv.spawn.options.stdio, [2]: uv.spawn.options.stdio, [3]: uv.spawn.options.stdio }
 
+
 ---@class uv.fs_stat.result.time
 ---@field sec integer
 ---@field nsec integer
@@ -91,6 +95,7 @@
 ---@field birthtime uv.fs_stat.result.time
 ---@field type      string
 
+
 ---@class uv.fs_statfs.result
 ---
 ---@field type   integer
@@ -100,6 +105,8 @@
 ---@field bavail integer
 ---@field files  integer
 ---@field ffree  integer
+
+
 
 ---@class uv.getaddrinfo.hints : table
 ---@field family      string|integer|uv.socket.family
@@ -113,6 +120,7 @@
 ---@field numericserv boolean
 ---@field canonname   boolean
 
+
 --- uv.getnameinfo.address
 ---
 ---@class uv.getnameinfo.address : table
@@ -120,15 +128,18 @@
 ---@field port   integer
 ---@field family string|integer
 
+
 --- uv.new_thread.options
 ---
 ---@class uv.new_thread.options : table
 ---@field stack_size integer
 
+
 --- uv.pipe.read_flags
 ---
 ---@class uv.pipe.read_flags : table
 ---@field nonblock boolean|false
+
 
 --- uv.pipe.write_flags
 ---
@@ -177,6 +188,7 @@
 ---@class uv.tcp_bind.flags : table
 ---@field ipv6only boolean
 
+
 --- uv.udp_bind.flags
 ---
 ---
@@ -190,6 +202,7 @@
 ---| 0 # UV_TTY_MODE_NORMAL: Initial/normal terminal mode
 ---| 1 # UV_TTY_MODE_RAW: Raw input mode (On Windows, ENABLE_WINDOW_INPUT is also enabled)
 ---| 2 # UV_TTY_MODE_IO: Binary-safe I/O mode for IPC (Unix-only)
+
 
 --- uv.run() modes:
 ---
@@ -212,6 +225,7 @@
 ---| "default" # Runs the event loop until there are no more active and referenced handles or requests.
 ---| "once" # Poll for I/O once.
 ---| "nowait" # Poll for I/O once but don't block if there are no pending callbacks.
+
 
 ---@class uv.interface_addresses.addr
 ---
@@ -241,6 +255,7 @@
 ---| "atmpvc"
 ---| "appletalk"
 ---| "packet"
+
 
 ---@class uv.os_get_passwd.info
 ---@field username string
@@ -283,6 +298,8 @@
 ---| "wdp"
 ---| "p"
 
+
+
 --- socket info
 ---
 ---@class uv.socketinfo : table
@@ -290,9 +307,11 @@
 ---@field family string|uv.socket.family
 ---@field port integer
 
+
 --- uv.udp.sockname
 ---
 ---@alias uv.udp.sockname uv.socketinfo
+
 
 ---@class uv.uv_fs_t          : uv.uv_req_t
 ---@class uv.uv_write_t       : uv.uv_req_t
@@ -315,6 +334,7 @@
 ---@alias uv.fs_copyfile.flags
 ---| uv.fs_copyfile.flags_t
 ---| integer
+
 
 ---@class uv.fs_event_start.flags : table
 ---@field watch_entry boolean|nil # default: false
@@ -372,9 +392,11 @@
 ---@alias uv.fs_realpath.callback          fun(err: uv.callback.err, path?:string)
 ---@alias uv.fs_readdir.callback           fun(err: uv.callback.err, entries: uv.fs_readdir.entry[]|nil)
 
+
 ---@class uv.fs_readdir.entry : table
 ---@field name string
 ---@field type string
+
 
 ---@class uv.udp_recv_start.callback.addr : table
 ---@field ip string
@@ -441,6 +463,7 @@
 
 ---@alias uv.callback_with_success fun(err: uv.callback.err, success: uv.callback.success)
 
+
 ---@alias uv.fs_open.flags string
 ---| "r"
 ---| "rs"
@@ -462,6 +485,7 @@
 ---| "xa+"
 ---| integer
 
+
 ---@class uv.cpu_info.cpu : table
 ---@field model string
 ---@field speed number
@@ -473,6 +497,7 @@
 ---@field sys  number
 ---@field idle number
 ---@field irq  number
+
 
 --- The name of the struct for a given request (e.g. `"fs"` for `uv_fs_t`)
 --- and the libuv enum integer for the request's type (`uv_req_type`).
@@ -495,6 +520,7 @@
 ---| "timer"
 ---| "tty"
 ---| "udp"
+
 
 --- The libuv enum integer for the request's type (`uv_req_type`).
 ---@alias uv.req_type.enum integer

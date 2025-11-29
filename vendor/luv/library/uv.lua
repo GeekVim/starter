@@ -199,6 +199,7 @@
 ---
 local uv
 
+
 --- This call is used in conjunction with `uv.listen()` to accept incoming
 --- connections. Call this function after receiving a callback to accept the
 --- connection.
@@ -222,6 +223,7 @@ local uv
 ---@return uv.error.name|nil    err_name
 function uv.accept(stream, client_stream) end
 
+
 --- Wakeup the event loop and call the async handle's callback.
 ---
 --- **Note**: It's safe to call this function from any thread. The callback will be
@@ -240,6 +242,8 @@ function uv.accept(stream, client_stream) end
 ---@return uv.error.name|nil err_name
 function uv.async_send(async, ...) end
 
+
+
 --- Returns an estimate of the default amount of parallelism a program should use. Always returns a non-zero value.
 ---
 --- On Linux, inspects the calling thread’s CPU affinity mask to determine if it has been pinned to specific CPUs.
@@ -250,6 +254,8 @@ function uv.async_send(async, ...) end
 ---
 ---@return integer
 function uv.available_parallelism() end
+
+
 
 --- Get backend file descriptor. Only kqueue, epoll, and event ports are supported.
 ---
@@ -262,10 +268,13 @@ function uv.available_parallelism() end
 ---@return integer|nil fd
 function uv.backend_fd() end
 
+
+
 --- Get the poll timeout. The return value is in milliseconds, or -1 for no timeout.
 ---
 ---@return integer
 function uv.backend_timeout() end
+
 
 --- Cancel a pending request. Fails if the request is executing or has finished
 --- executing. Only cancellation of `uv_fs_t`, `uv_getaddrinfo_t`,
@@ -277,6 +286,8 @@ function uv.backend_timeout() end
 ---@return uv.error.name|nil err_name
 function uv.cancel(req) end
 
+
+
 --- Sets the current working directory with the string `cwd`.
 ---
 ---@param  cwd        string
@@ -284,6 +295,7 @@ function uv.cancel(req) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.chdir(cwd) end
+
 
 --- Start the handle with the given callback.
 ---
@@ -294,6 +306,7 @@ function uv.chdir(cwd) end
 ---@return uv.error.name|nil err_name
 function uv.check_start(check, callback) end
 
+
 --- Stop the handle, the callback will no longer be called.
 ---
 ---@param  check      uv.uv_check_t
@@ -301,6 +314,7 @@ function uv.check_start(check, callback) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.check_stop(check) end
+
 
 --- Request handle to be closed. `callback` will be called asynchronously after this
 --- call. This MUST be called on each handle before memory is released.
@@ -315,6 +329,8 @@ function uv.check_stop(check) end
 ---@param handle uv.uv_handle_t
 ---@param callback? function
 function uv.close(handle, callback) end
+
+
 
 --- Returns information about the CPU(s) on the system as a table of tables for each
 --- CPU found.
@@ -335,12 +351,16 @@ function uv.close(handle, callback) end
 ---@return uv.error.name|nil err_name
 function uv.cpu_info() end
 
+
+
 --- Returns the current working directory.
 ---
 ---@return string|nil cwd
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.cwd() end
+
+
 
 --- Disables inheritance for file descriptors / handles that this process inherited
 --- from its parent. The effect is that child processes spawned by this process
@@ -354,12 +374,15 @@ function uv.cwd() end
 --- a better job on Windows than it does on Unix.
 function uv.disable_stdio_inheritance() end
 
+
+
 --- Returns the executable path.
 ---
 ---@return string|nil exepath
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.exepath() end
+
 
 --- Gets the platform dependent file descriptor equivalent.
 ---
@@ -378,6 +401,8 @@ function uv.exepath() end
 ---@return uv.error.name|nil err_name
 function uv.fileno(handle) end
 
+
+
 --- Equivalent to `access(2)` on Unix. Windows uses `GetFileAttributesW()`. Access
 --- `mode` can be an integer or a string containing `"R"` or `"W"` or `"X"`.
 --- Returns `true` or `false` indicating access permission.
@@ -391,6 +416,8 @@ function uv.fileno(handle) end
 ---@overload fun(path:string, mode:integer|string, callback:uv.fs_access.callback):uv.uv_fs_t
 function uv.fs_access(path, mode) end
 
+
+
 --- Equivalent to `chmod(2)`.
 ---
 ---@param  path        string
@@ -401,6 +428,8 @@ function uv.fs_access(path, mode) end
 ---
 ---@overload fun(path:string, mode:integer, callback:uv.fs_chmod.callback):uv.uv_fs_t
 function uv.fs_chmod(path, mode) end
+
+
 
 --- Equivalent to `chown(2)`.
 ---
@@ -414,6 +443,8 @@ function uv.fs_chmod(path, mode) end
 ---@overload fun(path:string, uid:integer, gid:integer, callback:uv.fs_chown.callback):uv.uv_fs_t
 function uv.fs_chown(path, uid, gid) end
 
+
+
 --- Equivalent to `close(2)`.
 ---
 ---@param  fd          integer
@@ -424,6 +455,7 @@ function uv.fs_chown(path, uid, gid) end
 ---@overload fun(fd:integer, callback:uv.fs_close.callback):uv.uv_fs_t
 function uv.fs_close(fd) end
 
+
 --- Closes a directory stream returned by a successful `uv.fs_opendir()` call.
 ---
 ---@param  dir         uv.luv_dir_t
@@ -433,6 +465,8 @@ function uv.fs_close(fd) end
 ---
 ---@overload fun(dir:uv.luv_dir_t, callback:uv.fs_closedir.callback):uv.uv_fs_t
 function uv.fs_closedir(dir) end
+
+
 
 --- Copies a file from path to new_path. If the `flags` parameter is omitted, then the 3rd parameter will be treated as the `callback`.
 ---
@@ -451,6 +485,7 @@ function uv.fs_closedir(dir) end
 ---@overload fun(path:string, new_path:string, callback:uv.fs_copyfile.callback):uv.uv_fs_t
 function uv.fs_copyfile(path, new_path, flags) end
 
+
 --- Get the path being monitored by the handle.
 ---
 ---@param  fs_event   uv.uv_fs_event_t
@@ -458,6 +493,7 @@ function uv.fs_copyfile(path, new_path, flags) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.fs_event_getpath(fs_event) end
+
 
 --- Start the handle with the given callback, which will watch the specified path
 --- for changes.
@@ -471,6 +507,7 @@ function uv.fs_event_getpath(fs_event) end
 ---@return uv.error.name|nil err_name
 function uv.fs_event_start(fs_event, path, flags, callback) end
 
+
 --- Stop the handle, the callback will no longer be called.
 ---
 ---@param  fs_event   uv.uv_fs_event_t
@@ -478,6 +515,8 @@ function uv.fs_event_start(fs_event, path, flags, callback) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.fs_event_stop(fs_event) end
+
+
 
 --- Equivalent to `fchmod(2)`.
 ---
@@ -489,6 +528,8 @@ function uv.fs_event_stop(fs_event) end
 ---
 ---@overload fun(fd:integer, mode:integer, callback:uv.fs_fchmod.callback):uv.uv_fs_t
 function uv.fs_fchmod(fd, mode) end
+
+
 
 --- Equivalent to `fchown(2)`.
 ---
@@ -502,6 +543,8 @@ function uv.fs_fchmod(fd, mode) end
 ---@overload fun(fd:integer, uid:integer, gid:integer, callback:uv.fs_fchown.callback):uv.uv_fs_t
 function uv.fs_fchown(fd, uid, gid) end
 
+
+
 --- Equivalent to `fdatasync(2)`.
 ---
 ---@param  fd          integer
@@ -511,6 +554,8 @@ function uv.fs_fchown(fd, uid, gid) end
 ---
 ---@overload fun(fd:integer, callback:uv.fs_fdatasync.callback):uv.uv_fs_t
 function uv.fs_fdatasync(fd) end
+
+
 
 --- Equivalent to `fstat(2)`.
 ---
@@ -526,6 +571,8 @@ function uv.fs_fdatasync(fd) end
 ---@overload fun(fd:integer, callback:uv.fs_fstat.callback):uv.uv_fs_t
 function uv.fs_fstat(fd) end
 
+
+
 --- Equivalent to `fsync(2)`.
 ---
 ---@param  fd          integer
@@ -535,6 +582,8 @@ function uv.fs_fstat(fd) end
 ---
 ---@overload fun(fd:integer, callback:uv.fs_fsync.callback):uv.uv_fs_t
 function uv.fs_fsync(fd) end
+
+
 
 --- Equivalent to `ftruncate(2)`.
 ---
@@ -546,6 +595,8 @@ function uv.fs_fsync(fd) end
 ---
 ---@overload fun(fd:integer, offset:integer, callback:uv.fs_ftruncate.callback):uv.uv_fs_t
 function uv.fs_ftruncate(fd, offset) end
+
+
 
 --- Equivalent to `futime(2)`.
 ---
@@ -559,6 +610,8 @@ function uv.fs_ftruncate(fd, offset) end
 ---@overload fun(fd:integer, atime:number, mtime:number, callback:uv.fs_futime.callback):uv.uv_fs_t
 function uv.fs_futime(fd, atime, mtime) end
 
+
+
 --- Equivalent to `lchown(2)`.
 ---
 ---@param  fd          integer
@@ -570,6 +623,8 @@ function uv.fs_futime(fd, atime, mtime) end
 ---
 ---@overload fun(fd:integer, uid:integer, gid:integer, callback:uv.fs_lchown.callback):uv.uv_fs_t
 function uv.fs_lchown(fd, uid, gid) end
+
+
 
 --- Equivalent to `link(2)`.
 ---
@@ -586,6 +641,8 @@ function uv.fs_lchown(fd, uid, gid) end
 ---@overload fun(path:string, new_path:string, callback:uv.fs_link.callback):uv.uv_fs_t
 function uv.fs_link(path, new_path) end
 
+
+
 --- Equivalent to `lstat(2)`.
 ---
 --- **Returns (sync version):** `table` or `fail` (see `uv.fs_stat`)
@@ -600,6 +657,8 @@ function uv.fs_link(path, new_path) end
 ---@overload fun(path:integer, callback:uv.fs_lstat.callback):uv.uv_fs_t
 function uv.fs_lstat(path) end
 
+
+
 --- Equivalent to `lutime(2)`.
 ---
 ---@param  path        string
@@ -612,6 +671,8 @@ function uv.fs_lstat(path) end
 ---@overload fun(path:string, atime:number, mtime:number, callback:uv.fs_lutime.callback):uv.uv_fs_t
 function uv.fs_lutime(path, atime, mtime) end
 
+
+
 --- Equivalent to `mkdir(2)`.
 ---
 ---@param  path        string
@@ -623,6 +684,8 @@ function uv.fs_lutime(path, atime, mtime) end
 ---@overload fun(path:string, mode:integer, callback:uv.fs_mkdir.callback):uv.uv_fs_t
 function uv.fs_mkdir(path, mode) end
 
+
+
 --- Equivalent to `mkdtemp(3)`.
 ---
 ---@param  template   string
@@ -633,6 +696,8 @@ function uv.fs_mkdir(path, mode) end
 ---@overload fun(template:string, callback:uv.fs_mkdtemp.callback):uv.uv_fs_t
 function uv.fs_mkdtemp(template) end
 
+
+
 --- Equivalent to `mkstemp(3)`. Returns a temporary file handle and filename.
 ---
 ---@param  template    string
@@ -642,6 +707,8 @@ function uv.fs_mkdtemp(template) end
 ---
 ---@overload fun(template:string, callback:uv.fs_mkstemp.callback):uv.uv_fs_t
 function uv.fs_mkstemp(template) end
+
+
 
 --- Equivalent to `open(2)`. Access `flags` may be an integer or one of: `"r"`,
 --- `"rs"`, `"sr"`, `"r+"`, `"rs+"`, `"sr+"`, `"w"`, `"wx"`, `"xw"`, `"w+"`,
@@ -665,6 +732,8 @@ function uv.fs_mkstemp(template) end
 ---@overload fun(path:string, flags:uv.fs_open.flags, mode:integer, callback:uv.fs_open.callback):uv.uv_fs_t
 function uv.fs_open(path, flags, mode) end
 
+
+
 --- Opens path as a directory stream. Returns a handle that the user can pass to
 --- `uv.fs_readdir()`. The `entries` parameter defines the maximum number of entries
 --- that should be returned by each call to `uv.fs_readdir()`.
@@ -681,6 +750,7 @@ function uv.fs_open(path, flags, mode) end
 ---@overload fun(path: string, callback: uv.fs_opendir.callback, entries?: integer):uv.uv_fs_t
 function uv.fs_opendir(path) end
 
+
 --- Get the path being monitored by the handle.
 ---
 ---@param  fs_poll    uv.uv_fs_poll_t
@@ -688,6 +758,7 @@ function uv.fs_opendir(path) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.fs_poll_getpath(fs_poll) end
+
 
 --- Check the file at `path` for changes every `interval` milliseconds.
 ---
@@ -703,6 +774,7 @@ function uv.fs_poll_getpath(fs_poll) end
 ---@return uv.error.name|nil err_name
 function uv.fs_poll_start(fs_poll, path, interval, callback) end
 
+
 --- Stop the handle, the callback will no longer be called.
 ---
 ---@param fs_poll uv.uv_fs_poll_t
@@ -710,6 +782,8 @@ function uv.fs_poll_start(fs_poll, path, interval, callback) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.fs_poll_stop(fs_poll) end
+
+
 
 --- Equivalent to `preadv(2)`. Returns any data. An empty string indicates EOF.
 ---
@@ -727,6 +801,7 @@ function uv.fs_poll_stop(fs_poll) end
 ---@overload fun(fd:integer, size:integer, offset?:integer, callback:uv.fs_read.callback):uv.uv_fs_t
 function uv.fs_read(fd, size, offset) end
 
+
 --- Iterates over the directory stream `luv_dir_t` returned by a successful
 --- `uv.fs_opendir()` call. A table of data tables is returned where the number
 --- of entries `n` is equal to or less than the `entries` parameter used in
@@ -740,6 +815,8 @@ function uv.fs_read(fd, size, offset) end
 ---@overload fun(dir:uv.luv_dir_t, callback:uv.fs_readdir.callback):uv.uv_fs_t
 function uv.fs_readdir(dir) end
 
+
+
 --- Equivalent to `readlink(2)`.
 ---
 ---@param  path       string
@@ -750,6 +827,8 @@ function uv.fs_readdir(dir) end
 ---@overload fun(path:string, callback:uv.fs_readlink.callback):uv.uv_fs_t
 function uv.fs_readlink(path) end
 
+
+
 --- Equivalent to `realpath(3)`.
 ---
 ---@param  path       string
@@ -759,6 +838,8 @@ function uv.fs_readlink(path) end
 ---
 ---@overload fun(path:string, callback:uv.fs_realpath.callback):uv.uv_fs_t
 function uv.fs_realpath(path) end
+
+
 
 --- Equivalent to `rename(2)`.
 ---
@@ -771,6 +852,8 @@ function uv.fs_realpath(path) end
 ---@overload fun(path:string, new_path:string, callback:uv.fs_rename.callback):uv.uv_fs_t
 function uv.fs_rename(path, new_path) end
 
+
+
 --- Equivalent to `rmdir(2)`.
 ---
 ---@param  path        string
@@ -780,6 +863,8 @@ function uv.fs_rename(path, new_path) end
 ---
 ---@overload fun(path:string, callback:uv.fs_rmdir.callback):uv.uv_fs_t
 function uv.fs_rmdir(path) end
+
+
 
 --- Equivalent to `scandir(3)`, with a slightly different API. Returns a handle that
 --- the user can pass to `uv.fs_scandir_next()`.
@@ -795,6 +880,8 @@ function uv.fs_rmdir(path) end
 ---@return uv.error.name|nil err_name
 function uv.fs_scandir(path, callback) end
 
+
+
 --- Called on a `uv_fs_t` returned by `uv.fs_scandir()` to get the next directory
 --- entry data as a `name, type` pair. When there are no more entries, `nil` is
 --- returned.
@@ -808,6 +895,8 @@ function uv.fs_scandir(path, callback) end
 ---@return uv.error.name|nil err_name
 function uv.fs_scandir_next(fs) end
 
+
+
 --- Limited equivalent to `sendfile(2)`. Returns the number of bytes written.
 ---
 ---@param  out_fd      integer
@@ -820,6 +909,8 @@ function uv.fs_scandir_next(fs) end
 ---
 ---@overload fun(out_fd:integer, in_fd:integer, in_offset:integer, size:integer, callback:uv.fs_sendfile.callback):uv.uv_fs_t
 function uv.fs_sendfile(out_fd, in_fd, in_offset, size) end
+
+
 
 --- Equivalent to `stat(2)`.
 ---
@@ -860,6 +951,7 @@ function uv.fs_sendfile(out_fd, in_fd, in_offset, size) end
 ---@overload fun(path:string, callback:uv.fs_stat.callback):uv.uv_fs_t
 function uv.fs_stat(path) end
 
+
 --- Equivalent to `statfs(2)`.
 ---
 --- **Returns** `table` or `nil`
@@ -877,6 +969,8 @@ function uv.fs_stat(path) end
 ---@overload fun(path: string, callback: uv.fs_statfs.callback)
 function uv.fs_statfs(path) end
 
+
+
 --- Equivalent to `symlink(2)`. If the `flags` parameter is omitted, then the 3rd parameter will be treated as the `callback`.
 ---
 ---
@@ -891,6 +985,8 @@ function uv.fs_statfs(path) end
 ---@overload fun(path:string, new_path:string, callback:uv.fs_symlink.callback):uv.uv_fs_t
 function uv.fs_symlink(path, new_path, flags) end
 
+
+
 --- Equivalent to `unlink(2)`.
 ---
 ---@param  path        string
@@ -900,6 +996,8 @@ function uv.fs_symlink(path, new_path, flags) end
 ---
 ---@overload fun(path:string, callback:uv.fs_unlink.callback):uv.uv_fs_t
 function uv.fs_unlink(path) end
+
+
 
 --- Equivalent to `utime(2)`.
 ---
@@ -912,6 +1010,8 @@ function uv.fs_unlink(path) end
 ---
 ---@overload fun(path:string, atime:number, mtime:number, callback:uv.fs_utime.callback):uv.uv_fs_t
 function uv.fs_utime(path, atime, mtime) end
+
+
 
 --- Equivalent to `pwritev(2)`. Returns the number of bytes written.
 ---
@@ -929,6 +1029,8 @@ function uv.fs_utime(path, atime, mtime) end
 ---@overload fun(fd:integer, data:uv.buffer, offset?:integer, callback:uv.fs_write.callback):uv.uv_fs_t
 function uv.fs_write(fd, data, offset) end
 
+
+
 --- Gets the amount of memory available to the process in bytes based on limits
 --- imposed by the OS. If there is no such constraint, or the constraint is unknown,
 --- 0 is returned. Note that it is not unusual for this value to be less than or
@@ -937,10 +1039,14 @@ function uv.fs_write(fd, data, offset) end
 ---@return number
 function uv.get_constrained_memory() end
 
+
+
 --- Returns the current free system memory in bytes.
 ---
 ---@return number
 function uv.get_free_memory() end
+
+
 
 --- Returns the title of the current process.
 ---
@@ -949,12 +1055,16 @@ function uv.get_free_memory() end
 ---@return uv.error.name|nil err_name
 function uv.get_process_title() end
 
+
+
 --- Returns the current total system memory in bytes.
 ---
 --- **Returns:** `number`
 ---
 ---@return number
 function uv.get_total_memory() end
+
+
 
 --- Equivalent to `getaddrinfo(3)`. Either `node` or `service` may be `nil` but not
 --- both.
@@ -987,12 +1097,16 @@ function uv.get_total_memory() end
 ---@overload fun(host:string, service:string, hints?:uv.getaddrinfo.hints, callback:uv.getaddrinfo.callback):uv.uv_getaddrinfo_t userdata|nil, string?, string?
 function uv.getaddrinfo(host, service, hints) end
 
+
+
 --- Returns the group ID of the process.
 ---
 --- **Note:** This is not a libuv function and is not supported on Windows.
 ---
 ---@return integer
 function uv.getgid() end
+
+
 
 --- Equivalent to `getnameinfo(3)`.
 ---
@@ -1011,9 +1125,13 @@ function uv.getgid() end
 ---@overload fun(address:uv.getnameinfo.address, callback:uv.getnameinfo.callback):uv.uv_getnameinfo_t|nil, string|nil, string|nil
 function uv.getnameinfo(address) end
 
+
+
 --- **Deprecated:** Please use `uv.os_getpid()` instead.
 ---
 function uv.getpid() end
+
+
 
 --- Returns the resource usage.
 ---
@@ -1044,6 +1162,8 @@ function uv.getpid() end
 ---@return uv.error.name|nil err_name
 function uv.getrusage() end
 
+
+
 --- Cross-platform implementation of `gettimeofday(2)`. Returns the seconds and
 --- microseconds of a unix time as a pair.
 ---
@@ -1052,12 +1172,16 @@ function uv.getrusage() end
 ---@return uv.error.name|nil err_name
 function uv.gettimeofday() end
 
+
+
 --- Returns the user ID of the process.
 ---
 --- **Note:** This is not a libuv function and is not supported on Windows.
 ---
 ---@return integer
 function uv.getuid() end
+
+
 
 --- Used to detect what type of stream should be used with a given file
 --- descriptor `fd`. Usually this will be used during initialization to guess the
@@ -1067,6 +1191,7 @@ function uv.getuid() end
 ---@return string
 function uv.guess_handle(fd) end
 
+
 --- Returns the name of the struct for a given handle (e.g. `"pipe"` for `uv_pipe_t`)
 --- and the libuv enum integer for the handle's type (`uv_handle_type`).
 ---
@@ -1074,6 +1199,7 @@ function uv.guess_handle(fd) end
 ---@return string  type
 ---@return integer enum
 function uv.handle_get_type(handle) end
+
 
 --- Returns `true` if the handle referenced, `false` if not.
 ---
@@ -1085,6 +1211,8 @@ function uv.handle_get_type(handle) end
 ---@return uv.error.name|nil err_name
 function uv.has_ref(handle) end
 
+
+
 --- Returns a current high-resolution time in nanoseconds as a number. This is
 --- relative to an arbitrary time in the past. It is not related to the time of day
 --- and therefore not subject to clock drift. The primary use is for measuring
@@ -1095,6 +1223,7 @@ function uv.has_ref(handle) end
 ---@return number
 function uv.hrtime() end
 
+
 --- Start the handle with the given callback.
 ---
 ---@param  idle       uv.uv_idle_t
@@ -1104,6 +1233,7 @@ function uv.hrtime() end
 ---@return uv.error.name|nil err_name
 function uv.idle_start(idle, callback) end
 
+
 --- Stop the handle, the callback will no longer be called.
 ---
 ---@param  idle       uv.uv_idle_t
@@ -1112,6 +1242,8 @@ function uv.idle_start(idle, callback) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.idle_stop(idle, check) end
+
+
 
 --- Retrieves a network interface identifier suitable for use in an IPv6 scoped
 --- address. On Windows, returns the numeric `ifindex` as a string. On all other
@@ -1123,6 +1255,8 @@ function uv.idle_stop(idle, check) end
 ---@return uv.error.name|nil err_name
 function uv.if_indextoiid(ifindex) end
 
+
+
 --- IPv6-capable implementation of `if_indextoname(3)`.
 ---
 ---@param  ifindex    integer
@@ -1131,6 +1265,7 @@ function uv.if_indextoiid(ifindex) end
 ---@return uv.error.name|nil err_name
 function uv.if_indextoname(ifindex) end
 
+
 --- Returns address information about the network interfaces on the system in a
 --- table. Each table key is the name of the interface while each associated value
 --- is an array of address information where fields are `ip`, `family`, `netmask`,
@@ -1138,6 +1273,7 @@ function uv.if_indextoname(ifindex) end
 ---
 ---@return table<string, uv.interface_addresses.addr>
 function uv.interface_addresses() end
+
 
 --- Returns `true` if the handle is active, `false` if it's inactive. What "active”
 --- means depends on the type of handle:
@@ -1161,6 +1297,7 @@ function uv.interface_addresses() end
 ---@return uv.error.name|nil err_name
 function uv.is_active(handle) end
 
+
 --- Returns `true` if the handle is closing or closed, `false` otherwise.
 ---
 --- **Note**: This function should only be used between the initialization of the
@@ -1172,17 +1309,20 @@ function uv.is_active(handle) end
 ---@return uv.error.name|nil err_name
 function uv.is_closing(handle) end
 
+
 --- Returns `true` if the stream is readable, `false` otherwise.
 ---
 ---@param stream uv.uv_stream_t
 ---@return boolean
 function uv.is_readable(stream) end
 
+
 --- Returns `true` if the stream is writable, `false` otherwise.
 ---
 ---@param stream uv.uv_stream_t
 ---@return boolean
 function uv.is_writable(stream) end
+
 
 --- Sends the specified signal to the given PID. Check the documentation on
 --- `uv_signal_t` for signal support, specially on Windows.
@@ -1193,6 +1333,7 @@ function uv.is_writable(stream) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.kill(pid, signum) end
+
 
 --- Start listening for incoming connections. `backlog` indicates the number of
 --- connections the kernel might queue, same as `listen(2)`. When a new incoming
@@ -1208,12 +1349,15 @@ function uv.kill(pid, signum) end
 ---@return uv.error.name|nil err_name
 function uv.listen(stream, backlog, callback) end
 
+
 --- Returns the load average as a triad. Not supported on Windows.
 ---
 ---@return number
 ---@return number
 ---@return number
 function uv.loadavg() end
+
+
 
 --- Returns `true` if there are referenced active handles, active requests, or
 --- closing handles in the loop; otherwise, `false`.
@@ -1222,6 +1366,8 @@ function uv.loadavg() end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.loop_alive() end
+
+
 
 --- Closes all internal loop resources. In normal execution, the loop will
 --- automatically be closed when it is garbage collected by Lua, so it is not
@@ -1233,6 +1379,8 @@ function uv.loop_alive() end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.loop_close() end
+
+
 
 --- Set additional loop options. You should normally call this before the first call
 --- to uv_run() unless mentioned otherwise.
@@ -1265,11 +1413,13 @@ function uv.loop_close() end
 ---@overload fun(option: "metrics_idle_time"):(success:0|nil, err:uv.error.message|nil, err_name:uv.error.name|nil)
 function uv.loop_configure(option, value) end
 
+
 --- If the loop is running, returns a string indicating the mode in use. If the loop
 --- is not running, `nil` is returned instead.
 ---
 ---@return string|nil
 function uv.loop_mode() end
+
 
 --- Retrieve the amount of time the event loop has been idle in the kernel’s event
 --- provider (e.g. `epoll_wait`). The call is thread safe.
@@ -1293,6 +1443,7 @@ function uv.loop_mode() end
 ---@return number
 function uv.metrics_idle_time() end
 
+
 --- Creates and initializes a new `uv_async_t`. Returns the Lua userdata wrapping
 --- it. A `nil` callback is allowed.
 ---
@@ -1305,6 +1456,7 @@ function uv.metrics_idle_time() end
 ---@return uv.error.name|nil err_name
 function uv.new_async(callback) end
 
+
 --- Creates and initializes a new `uv_check_t`. Returns the Lua userdata wrapping
 --- it.
 ---
@@ -1312,6 +1464,7 @@ function uv.new_async(callback) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.new_check() end
+
 
 --- Creates and initializes a new `uv_fs_event_t`. Returns the Lua userdata wrapping
 --- it.
@@ -1321,6 +1474,7 @@ function uv.new_check() end
 ---@return uv.error.name|nil err_name
 function uv.new_fs_event() end
 
+
 --- Creates and initializes a new `uv_fs_poll_t`. Returns the Lua userdata wrapping
 --- it.
 ---
@@ -1329,6 +1483,7 @@ function uv.new_fs_event() end
 ---@return uv.error.name|nil err_name
 function uv.new_fs_poll() end
 
+
 --- Creates and initializes a new `uv_idle_t`. Returns the Lua userdata wrapping
 --- it.
 ---
@@ -1336,6 +1491,7 @@ function uv.new_fs_poll() end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.new_idle() end
+
 
 --- Creates and initializes a new `uv_pipe_t`. Returns the Lua userdata wrapping
 --- it. The `ipc` argument is a boolean to indicate if this pipe will be used for
@@ -1347,6 +1503,7 @@ function uv.new_idle() end
 ---@return uv.error.name|nil err_name
 function uv.new_pipe(ipc) end
 
+
 --- Initialize the handle using a file descriptor.
 ---
 --- The file descriptor is set to non-blocking mode.
@@ -1357,6 +1514,7 @@ function uv.new_pipe(ipc) end
 ---@return uv.error.name|nil err_name
 function uv.new_poll(fd) end
 
+
 --- Creates and initializes a new `uv_prepare_t`. Returns the Lua userdata wrapping
 --- it.
 ---
@@ -1365,6 +1523,7 @@ function uv.new_poll(fd) end
 ---@return uv.error.name|nil err_name
 function uv.new_prepare() end
 
+
 --- Creates and initializes a new `uv_signal_t`. Returns the Lua userdata wrapping
 --- it.
 ---
@@ -1372,6 +1531,7 @@ function uv.new_prepare() end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.new_signal() end
+
 
 --- Initialize the handle using a socket descriptor. On Unix this is identical to
 --- `uv.new_poll()`. On windows it takes a SOCKET handle.
@@ -1384,6 +1544,7 @@ function uv.new_signal() end
 ---@return uv.error.name|nil err_name
 function uv.new_socket_poll(fd) end
 
+
 --- Creates and initializes a new `uv_tcp_t`. Returns the Lua userdata wrapping it.
 --- Flags may be a family string: `"unix"`, `"inet"`, `"inet6"`, `"ipx"`,
 --- `"netlink"`, `"x25"`, `"ax25"`, `"atmpvc"`, `"appletalk"`, or `"packet"`.
@@ -1393,6 +1554,8 @@ function uv.new_socket_poll(fd) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.new_tcp(flags) end
+
+
 
 --- Creates and initializes a `luv_thread_t` (not `uv_thread_t`). Returns the Lua
 --- userdata wrapping it and asynchronously executes `entry`, which can be either
@@ -1407,6 +1570,8 @@ function uv.new_tcp(flags) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.new_thread(options, entry, ...) end
+
+
 
 --- Creates and initializes a new `uv_timer_t`. Returns the Lua userdata wrapping
 --- it.
@@ -1444,6 +1609,8 @@ function uv.new_thread(options, entry, ...) end
 ---@return uv.error.name|nil err_name
 function uv.new_timer() end
 
+
+
 --- Initialize a new TTY stream with the given file descriptor. Usually the file
 --- descriptor will be:
 ---
@@ -1466,6 +1633,8 @@ function uv.new_timer() end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.new_tty(fd, readable) end
+
+
 
 --- Creates and initializes a new `uv_udp_t`. Returns the Lua userdata wrapping
 --- it. The actual socket is created lazily.
@@ -1492,6 +1661,8 @@ function uv.new_tty(fd, readable) end
 ---@return uv.error.name|nil err_name
 function uv.new_udp(flags) end
 
+
+
 --- Creates and initializes a new `luv_work_ctx_t` (not `uv_work_t`). Returns the
 --- Lua userdata wrapping it.
 ---
@@ -1506,6 +1677,8 @@ function uv.new_udp(flags) end
 ---@return uv.luv_work_ctx_t
 function uv.new_work(work_callback, after_work_callback) end
 
+
+
 --- Returns the current timestamp in milliseconds. The timestamp is cached at the
 --- start of the event loop tick, see `uv.update_time()` for details and rationale.
 ---
@@ -1517,6 +1690,8 @@ function uv.new_work(work_callback, after_work_callback) end
 ---@return integer
 function uv.now() end
 
+
+
 --- Returns all environmental variables as a dynamic table of names associated with
 --- their corresponding values.
 ---
@@ -1525,10 +1700,14 @@ function uv.now() end
 ---@return table<string, string>
 function uv.os_environ() end
 
+
+
 --- Returns password file information.
 ---
 ---@return uv.os_get_passwd.info
 function uv.os_get_passwd() end
+
+
 
 --- Returns the environment variable specified by `name` as string. The internal
 --- buffer size can be set by defining `size`. If omitted, `LUAL_BUFFERSIZE` is
@@ -1545,20 +1724,28 @@ function uv.os_get_passwd() end
 ---@return uv.error.name|nil err_name
 function uv.os_getenv(name, size) end
 
+
+
 --- Returns the hostname.
 ---
 ---@return string
 function uv.os_gethostname() end
+
+
 
 --- Returns the current process ID.
 ---
 ---@return number
 function uv.os_getpid() end
 
+
+
 --- Returns the parent process ID.
 ---
 ---@return number
 function uv.os_getppid() end
+
+
 
 --- Returns the scheduling priority of the process specified by `pid`.
 ---
@@ -1568,12 +1755,15 @@ function uv.os_getppid() end
 ---@return uv.error.name|nil err_name
 function uv.os_getpriority(pid) end
 
+
+
 --- **Warning:** This function is not thread safe.
 ---
 ---@return string|nil homedir
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.os_homedir() end
+
 
 --- Sets the environmental variable specified by `name` with the string `value`.
 ---
@@ -1586,6 +1776,7 @@ function uv.os_homedir() end
 ---@return uv.error.name|nil err_name
 function uv.os_setenv(name, value) end
 
+
 --- Sets the scheduling priority of the process specified by `pid`. The `priority`
 --- range is between -20 (high priority) and 19 (low priority).
 ---
@@ -1596,6 +1787,7 @@ function uv.os_setenv(name, value) end
 ---@return uv.error.name|nil err_name
 function uv.os_setpriority(pid, priority) end
 
+
 --- **Warning:** This function is not thread safe.
 ---
 ---@return string|nil tmpdir
@@ -1603,10 +1795,14 @@ function uv.os_setpriority(pid, priority) end
 ---@return uv.error.name|nil err_name
 function uv.os_tmpdir() end
 
+
+
 --- Returns system information.
 ---
 ---@return uv.os_uname.info
 function uv.os_uname() end
+
+
 
 --- **Warning:** This function is not thread safe.
 ---
@@ -1614,6 +1810,8 @@ function uv.os_uname() end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.os_unsetenv() end
+
+
 
 --- Create a pair of connected pipe handles. Data may be written to the `write` fd and read from the `read` fd. The resulting handles can be passed to `pipe_open`, used with `spawn`, or for any other purpose.
 ---
@@ -1650,6 +1848,7 @@ function uv.os_unsetenv() end
 ---@return uv.error.name|nil err_name
 function uv.pipe(read_flags, write_flags) end
 
+
 --- Bind the pipe to a file path (Unix) or a name (Windows).
 ---
 --- **Note**: Paths on Unix get truncated to sizeof(sockaddr_un.sun_path) bytes,
@@ -1662,6 +1861,7 @@ function uv.pipe(read_flags, write_flags) end
 ---@return uv.error.name|nil err_name
 function uv.pipe_bind(pipe, name) end
 
+
 --- Alters pipe permissions, allowing it to be accessed from processes run by different users.
 --- Makes the pipe writable or readable by all users. `flags` are: `"r"`, `"w"`, `"rw"`, or `"wr"`
 --- where `r` is `READABLE` and `w` is `WRITABLE`. This function is blocking.
@@ -1672,6 +1872,7 @@ function uv.pipe_bind(pipe, name) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.pipe_chmod(pipe, flags) end
+
 
 --- Connect to the Unix domain socket or the named pipe.
 ---
@@ -1686,6 +1887,7 @@ function uv.pipe_chmod(pipe, flags) end
 ---@return uv.error.name|nil err_name
 function uv.pipe_connect(pipe, name, callback) end
 
+
 --- Get the name of the Unix domain socket or the named pipe to which the handle is
 --- connected.
 ---
@@ -1695,6 +1897,7 @@ function uv.pipe_connect(pipe, name, callback) end
 ---@return uv.error.name|nil err_name
 function uv.pipe_getpeername(pipe) end
 
+
 --- Get the name of the Unix domain socket or the named pipe.
 ---
 ---@param  pipe       uv.uv_pipe_t
@@ -1702,6 +1905,7 @@ function uv.pipe_getpeername(pipe) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.pipe_getsockname(pipe) end
+
 
 --- Open an existing file descriptor or [`uv_handle_t`][] as a pipe.
 ---
@@ -1714,11 +1918,13 @@ function uv.pipe_getsockname(pipe) end
 ---@return uv.error.name|nil err_name
 function uv.pipe_open(pipe, fd) end
 
+
 --- Returns the pending pipe count for the named pipe.
 ---
 ---@param pipe uv.uv_pipe_t
 ---@return integer
 function uv.pipe_pending_count(pipe) end
+
 
 --- Set the number of pending pipe instance handles when the pipe server is waiting
 --- for connections.
@@ -1729,6 +1935,7 @@ function uv.pipe_pending_count(pipe) end
 ---@param count integer
 function uv.pipe_pending_instances(pipe, count) end
 
+
 --- Used to receive handles over IPC pipes.
 ---
 --- First - call `uv.pipe_pending_count()`, if it's > 0 then initialize a handle of
@@ -1738,6 +1945,7 @@ function uv.pipe_pending_instances(pipe, count) end
 ---@param pipe uv.uv_pipe_t
 ---@return string
 function uv.pipe_pending_type(pipe) end
+
 
 --- Starts polling the file descriptor.
 ---
@@ -1763,6 +1971,7 @@ function uv.pipe_pending_type(pipe) end
 ---@return uv.error.name|nil err_name
 function uv.poll_start(poll, events, callback) end
 
+
 --- Stop polling the file descriptor, the callback will no longer be called.
 ---
 ---@param  poll       uv.uv_poll_t
@@ -1770,6 +1979,7 @@ function uv.poll_start(poll, events, callback) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.poll_stop(poll) end
+
 
 --- Start the handle with the given callback.
 ---
@@ -1780,6 +1990,7 @@ function uv.poll_stop(poll) end
 ---@return uv.error.name|nil err_name
 function uv.prepare_start(prepare, callback) end
 
+
 --- Stop the handle, the callback will no longer be called.
 ---
 ---@param  prepare    uv.uv_prepare_t
@@ -1788,6 +1999,7 @@ function uv.prepare_start(prepare, callback) end
 ---@return uv.error.name|nil err_name
 function uv.prepare_stop(prepare) end
 
+
 --- The same as `uv.print_all_handles()` except only active handles are printed.
 ---
 --- **Note:** This is not available on Windows.
@@ -1795,6 +2007,7 @@ function uv.prepare_stop(prepare) end
 --- **Warning:** This function is meant for ad hoc debugging, there are no API/ABI
 --- stability guarantees.
 function uv.print_active_handles() end
+
 
 --- Prints all handles associated with the main loop to stderr. The format is
 --- `[flags] handle-type handle-address`. Flags are `R` for referenced, `A` for
@@ -1806,11 +2019,13 @@ function uv.print_active_handles() end
 --- stability guarantees.
 function uv.print_all_handles() end
 
+
 --- Returns the handle's pid.
 ---
 ---@param process uv.uv_process_t
 ---@return integer pid
 function uv.process_get_pid(process) end
+
 
 --- Sends the specified signal to the given process handle. Check the documentation
 --- on `uv_signal_t` for signal support, specially on Windows.
@@ -1821,6 +2036,7 @@ function uv.process_get_pid(process) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.process_kill(process, signum) end
+
 
 --- Queues a work request which will run `work_callback` in a new Lua state in a
 --- thread from the threadpool with any additional arguments from `...`. Values
@@ -1833,6 +2049,7 @@ function uv.process_kill(process, signum) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.queue_work(work_ctx, ...) end
+
 
 --- Fills a string of length `len` with cryptographically strong random bytes
 --- acquired from the system CSPRNG. `flags` is reserved for future extension
@@ -1859,6 +2076,7 @@ function uv.queue_work(work_ctx, ...) end
 ---@overload fun(len:integer, flags?:nil, callback:uv.random.callback):0|nil, string?, string?
 function uv.random(len, flags) end
 
+
 --- Read data from an incoming stream. The callback will be made several times until
 --- there is no more data to read or `uv.read_stop()` is called. When we've reached
 --- EOF, `data` will be `nil`.
@@ -1882,6 +2100,7 @@ function uv.random(len, flags) end
 ---@return uv.error.name|nil err_name
 function uv.read_start(stream, callback) end
 
+
 --- Stop reading data from the stream. The read callback will no longer be called.
 ---
 --- This function is idempotent and may be safely called on a stopped stream.
@@ -1891,6 +2110,7 @@ function uv.read_start(stream, callback) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.read_stop(stream) end
+
 
 --- Gets or sets the size of the receive buffer that the operating system uses for
 --- the socket.
@@ -1910,6 +2130,7 @@ function uv.read_stop(stream) end
 ---@return uv.error.name|nil err_name
 function uv.recv_buffer_size(handle, size) end
 
+
 --- Reference the given handle. References are idempotent, that is, if a handle is
 --- already referenced calling this function again will have no effect.
 ---
@@ -1917,6 +2138,7 @@ function uv.recv_buffer_size(handle, size) end
 ---
 ---@param handle uv.uv_handle_t
 function uv.ref(handle) end
+
 
 --- Returns the name of the struct for a given request (e.g. `"fs"` for `uv_fs_t`)
 --- and the libuv enum integer for the request's type (`uv_req_type`).
@@ -1926,12 +2148,14 @@ function uv.ref(handle) end
 ---@return uv.req_type.enum enum
 function uv.req_get_type(req) end
 
+
 --- Returns the resident set size (RSS) for the current process.
 ---
 ---@return integer|nil rss
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.resident_set_memory() end
+
 
 --- This function runs the event loop. It will act differently depending on the
 --- specified mode:
@@ -1959,6 +2183,7 @@ function uv.resident_set_memory() end
 ---@return boolean
 function uv.run(mode) end
 
+
 --- Gets or sets the size of the send buffer that the operating system uses for the
 --- socket.
 ---
@@ -1984,6 +2209,7 @@ function uv.run(mode) end
 ---@overload fun(handle: uv.uv_handle_t, size:0):(size:integer|nil, err:uv.error.message|nil, err_name:uv.error.name|nil)
 function uv.send_buffer_size(handle, size) end
 
+
 --- Sets the title of the current process with the string `title`.
 ---
 ---@param  title      string
@@ -1992,6 +2218,7 @@ function uv.send_buffer_size(handle, size) end
 ---@return uv.error.name|nil err_name
 function uv.set_process_title(title) end
 
+
 --- Sets the group ID of the process with the integer `id`.
 ---
 --- **Note:** This is not a libuv function and is not supported on Windows.
@@ -1999,12 +2226,14 @@ function uv.set_process_title(title) end
 ---@param id integer
 function uv.setgid(id) end
 
+
 --- Sets the user ID of the process with the integer `id`.
 ---
 --- **Note:** This is not a libuv function and is not supported on Windows.
 ---
 ---@param id integer
 function uv.setuid(id) end
+
 
 --- Shutdown the outgoing (write) side of a duplex stream. It waits for pending
 --- write requests to complete. The callback is called after shutdown is complete.
@@ -2016,6 +2245,7 @@ function uv.setuid(id) end
 ---@return uv.error.name|nil err_name
 function uv.shutdown(stream, callback) end
 
+
 --- Start the handle with the given callback, watching for the given signal.
 ---
 ---@param  signal     uv.uv_signal_t
@@ -2025,6 +2255,7 @@ function uv.shutdown(stream, callback) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.signal_start(signal, signum, callback) end
+
 
 --- Same functionality as `uv.signal_start()` but the signal handler is reset the moment the signal is received.
 ---
@@ -2036,6 +2267,7 @@ function uv.signal_start(signal, signum, callback) end
 ---@return uv.error.name|nil err_name
 function uv.signal_start_oneshot(signal, signum, callback) end
 
+
 --- Stop the handle, the callback will no longer be called.
 ---@param  signal     uv.uv_signal_t
 ---@return 0|nil      success
@@ -2043,9 +2275,11 @@ function uv.signal_start_oneshot(signal, signum, callback) end
 ---@return uv.error.name|nil err_name
 function uv.signal_stop(signal) end
 
+
 --- Pauses the thread in which this is called for a number of milliseconds.
 ---@param msec integer
 function uv.sleep(msec) end
+
 
 --- Create a pair of connected sockets with the specified properties. The resulting handles can be passed to `uv.tcp_open`, used with `uv.spawn`, or for any other purpose.
 ---
@@ -2087,6 +2321,7 @@ function uv.sleep(msec) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.socketpair(socktype, protocol, flags1, flags2) end
+
 
 --- Initializes the process handle and starts the process. If the process is
 --- successfully spawned, this function will return the handle and pid of the child
@@ -2187,16 +2422,19 @@ function uv.socketpair(socktype, protocol, flags1, flags2) end
 ---@return integer         pid
 function uv.spawn(path, options, on_exit) end
 
+
 --- Stop the event loop, causing `uv.run()` to end as soon as possible. This
 --- will happen not sooner than the next loop iteration. If this function was called
 --- before blocking for I/O, the loop won't block for I/O on this iteration.
 function uv.stop() end
+
 
 --- Returns the stream's write queue size.
 ---
 ---@param stream uv.uv_stream_t
 ---@return integer
 function uv.stream_get_write_queue_size(stream) end
+
 
 --- Enable or disable blocking mode for a stream.
 ---
@@ -2217,6 +2455,7 @@ function uv.stream_get_write_queue_size(stream) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.stream_set_blocking(stream, blocking) end
+
 
 --- Bind the handle to an host and port. `host` should be an IP address and
 --- not a domain name. Any `flags` are set with a table with field `ipv6only`
@@ -2239,6 +2478,7 @@ function uv.stream_set_blocking(stream, blocking) end
 ---@return uv.error.name|nil err_name
 function uv.tcp_bind(tcp, host, port, flags) end
 
+
 --- Resets a TCP connection by sending a RST packet. This is accomplished by setting
 --- the SO_LINGER socket option with a linger interval of zero and then calling
 --- `uv.close()`. Due to some platform inconsistencies, mixing of `uv.shutdown()`
@@ -2250,6 +2490,7 @@ function uv.tcp_bind(tcp, host, port, flags) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.tcp_close_reset(tcp, callback) end
+
 
 --- Establish an IPv4 or IPv6 TCP connection.
 ---
@@ -2269,6 +2510,7 @@ function uv.tcp_close_reset(tcp, callback) end
 ---@return uv.error.name|nil err_name
 function uv.tcp_connect(tcp, host, port, callback) end
 
+
 --- Get the address of the peer connected to the handle.
 ---
 ---@param  tcp               uv.uv_tcp_t
@@ -2277,6 +2519,7 @@ function uv.tcp_connect(tcp, host, port, callback) end
 ---@return uv.error.name|nil err_name
 function uv.tcp_getpeername(tcp) end
 
+
 --- Get the current address to which the handle is bound.
 ---
 ---@param  tcp               uv.uv_tcp_t
@@ -2284,6 +2527,7 @@ function uv.tcp_getpeername(tcp) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.tcp_getsockname(tcp) end
+
 
 --- Enable / disable TCP keep-alive. `delay` is the initial delay in seconds,
 --- ignored when enable is `false`.
@@ -2296,6 +2540,7 @@ function uv.tcp_getsockname(tcp) end
 ---@return uv.error.name|nil err_name
 function uv.tcp_keepalive(tcp, enable, delay) end
 
+
 --- Enable / disable Nagle's algorithm.
 ---
 ---@param  tcp        uv.uv_tcp_t
@@ -2304,6 +2549,7 @@ function uv.tcp_keepalive(tcp, enable, delay) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.tcp_nodelay(tcp, enable) end
+
 
 --- Open an existing file descriptor or SOCKET as a TCP handle.
 ---
@@ -2315,6 +2561,7 @@ function uv.tcp_nodelay(tcp, enable) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.tcp_open(tcp, sock) end
+
 
 --- Enable / disable simultaneous asynchronous accept requests that are queued by
 --- the operating system when listening for new TCP connections.
@@ -2331,10 +2578,12 @@ function uv.tcp_open(tcp, sock) end
 ---@return uv.error.name|nil err_name
 function uv.tcp_simultaneous_accepts(tcp, enable) end
 
+
 --- **Deprecated:** Please use `uv.stream_get_write_queue_size()` instead.
 ---
 ---@param tcp uv.uv_tcp_t
 function uv.tcp_write_queue_size(tcp) end
+
 
 --- Returns a boolean indicating whether two threads are the same. This function is
 --- equivalent to the `__eq` metamethod.
@@ -2344,6 +2593,7 @@ function uv.tcp_write_queue_size(tcp) end
 ---@return boolean      equal
 function uv.thread_equal(thread, other_thread) end
 
+
 --- Waits for the `thread` to finish executing its entry function.
 ---
 ---@param  thread      uv.luv_thread_t
@@ -2352,10 +2602,12 @@ function uv.thread_equal(thread, other_thread) end
 ---@return uv.error.name|nil err_name
 function uv.thread_join(thread) end
 
+
 --- Returns the handle for the thread in which this is called.
 ---
 ---@return uv.luv_thread_t
 function uv.thread_self() end
+
 
 --- Stop the timer, and if it is repeating restart it using the repeat value as the
 --- timeout. If the timer has never been started before it raises `EINVAL`.
@@ -2366,6 +2618,7 @@ function uv.thread_self() end
 ---@return uv.error.name|nil err_name
 function uv.timer_again(timer) end
 
+
 --- Get the timer due value or 0 if it has expired. The time is relative to `uv.now()`.
 ---
 --- **Note**: New in libuv version 1.40.0.
@@ -2374,11 +2627,13 @@ function uv.timer_again(timer) end
 ---@return integer
 function uv.timer_get_due_in(timer) end
 
+
 --- Get the timer repeat value.
 ---
 ---@param timer uv.uv_timer_t
 ---@return integer
 function uv.timer_get_repeat(timer) end
+
 
 --- Set the repeat interval value in milliseconds. The timer will be scheduled to
 --- run on the given interval, regardless of the callback execution duration, and
@@ -2392,6 +2647,7 @@ function uv.timer_get_repeat(timer) end
 ---@param timer uv.uv_timer_t
 ---@param repeat_ integer
 function uv.timer_set_repeat(timer, repeat_) end
+
 
 --- Start the timer. `timeout` and `repeat` are in milliseconds.
 ---
@@ -2408,6 +2664,7 @@ function uv.timer_set_repeat(timer, repeat_) end
 ---@return uv.error.name|nil err_name
 function uv.timer_start(timer, timeout, repeat_, callback) end
 
+
 --- Stop the timer, the callback will not be called anymore.
 ---
 ---@param  timer      uv.uv_timer_t
@@ -2416,12 +2673,14 @@ function uv.timer_start(timer, timeout, repeat_, callback) end
 ---@return uv.error.name|nil err_name
 function uv.timer_stop(timer) end
 
+
 --- Returns the libuv error message and error name (both in string form, see [`err` and `name` in Error Handling](#error-handling)) equivalent to the given platform dependent error code: POSIX error codes on Unix (the ones stored in errno), and Win32 error codes on Windows (those returned by GetLastError() or WSAGetLastError()).
 ---
 ---@param errcode integer
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.translate_sys_error(errcode) end
+
 
 --- Same as `uv.write()`, but won't queue a write request if it can't be completed
 --- immediately.
@@ -2434,6 +2693,7 @@ function uv.translate_sys_error(errcode) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.try_write(stream, data) end
+
 
 --- Like `uv.write2()`, but with the properties of `uv.try_write()`. Not supported on Windows, where it returns `UV_EAGAIN`.
 ---
@@ -2449,6 +2709,7 @@ function uv.try_write(stream, data) end
 ---@return uv.error.name|nil err_name
 function uv.try_write2(stream, data, send_handle) end
 
+
 --- Get the current state of whether console virtual terminal sequences are handled
 --- by libuv or the console. The return value is `"supported"` or `"unsupported"`.
 ---
@@ -2458,6 +2719,7 @@ function uv.try_write2(stream, data, send_handle) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.tty_get_vterm_state() end
+
 
 --- Gets the current Window width and height.
 ---
@@ -2469,6 +2731,7 @@ function uv.tty_get_vterm_state() end
 ---@return uv.error.name|nil err_name
 function uv.tty_get_winsize(tty) end
 
+
 --- To be called when the program exits. Resets TTY settings to default values for
 --- the next process to take over.
 ---
@@ -2479,6 +2742,7 @@ function uv.tty_get_winsize(tty) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.tty_reset_mode() end
+
 
 --- Set the TTY using the specified terminal mode.
 ---
@@ -2496,6 +2760,7 @@ function uv.tty_reset_mode() end
 ---@return uv.error.name|nil err_name
 function uv.tty_set_mode(tty, mode) end
 
+
 --- Controls whether console virtual terminal sequences are processed by libuv or
 --- console. Useful in particular for enabling ConEmu support of ANSI X3.64 and
 --- Xterm 256 colors. Otherwise Windows10 consoles are usually detected
@@ -2506,6 +2771,7 @@ function uv.tty_set_mode(tty, mode) end
 ---
 ---@param state "supported"|"unsupported"
 function uv.tty_set_vterm_state(state) end
+
 
 --- Bind the UDP handle to an IP address and port. Any `flags` are set with a table
 --- with fields `reuseaddr` or `ipv6only` equal to `true` or `false`.
@@ -2518,6 +2784,7 @@ function uv.tty_set_vterm_state(state) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.udp_bind(udp, host, port, flags) end
+
 
 --- Associate the UDP handle to a remote address and port, so every message sent by
 --- this handle is automatically sent to that destination. Calling this function
@@ -2533,17 +2800,20 @@ function uv.udp_bind(udp, host, port, flags) end
 ---@return uv.error.name|nil err_name
 function uv.udp_connect(udp, host, port) end
 
+
 --- Returns the handle's send queue count.
 ---
 ---@param  udp     uv.uv_udp_t
 ---@return integer count
 function uv.udp_get_send_queue_count(udp) end
 
+
 --- Returns the handle's send queue size.
 ---
 ---@param  udp     uv.uv_udp_t
 ---@return integer size
 function uv.udp_get_send_queue_size(udp) end
+
 
 --- Get the remote IP and port of the UDP handle on connected UDP handles.
 ---
@@ -2553,6 +2823,7 @@ function uv.udp_get_send_queue_size(udp) end
 ---@return uv.error.name|nil err_name
 function uv.udp_getpeername(udp) end
 
+
 --- Get the local IP and port of the UDP handle.
 ---
 ---@param  udp                 uv.uv_udp_t
@@ -2560,6 +2831,7 @@ function uv.udp_getpeername(udp) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.udp_getsockname(udp) end
+
 
 --- Opens an existing file descriptor or Windows SOCKET as a UDP handle.
 ---
@@ -2580,6 +2852,7 @@ function uv.udp_getsockname(udp) end
 ---@return uv.error.name|nil err_name
 function uv.udp_open(udp, fd) end
 
+
 --- Prepare for receiving data. If the socket has not previously been bound with
 --- `uv.udp_bind()` it is bound to `0.0.0.0` (the "all interfaces" IPv4 address)
 --- and a random port number.
@@ -2591,6 +2864,7 @@ function uv.udp_open(udp, fd) end
 ---@return uv.error.name|nil err_name
 function uv.udp_recv_start(udp, callback) end
 
+
 --- Stop listening for incoming datagrams.
 ---
 ---@param  udp        uv.uv_udp_t
@@ -2598,6 +2872,7 @@ function uv.udp_recv_start(udp, callback) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.udp_recv_stop(udp) end
+
 
 --- Send data over the UDP socket. If the socket has not previously been bound
 --- with `uv.udp_bind()` it will be bound to `0.0.0.0` (the "all interfaces" IPv4
@@ -2613,6 +2888,7 @@ function uv.udp_recv_stop(udp) end
 ---@return uv.error.name|nil err_name
 function uv.udp_send(udp, data, host, port, callback) end
 
+
 --- Set broadcast on or off.
 ---
 ---@param  udp        uv.uv_udp_t
@@ -2621,6 +2897,7 @@ function uv.udp_send(udp, data, host, port, callback) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.udp_set_broadcast(udp, on) end
+
 
 --- Set membership for a multicast address. `multicast_addr` is multicast address to
 --- set membership for. `interface_addr` is interface address. `membership` can be
@@ -2635,6 +2912,7 @@ function uv.udp_set_broadcast(udp, on) end
 ---@return uv.error.name|nil err_name
 function uv.udp_set_membership(udp, multicast_addr, interface_addr, membership) end
 
+
 --- Set the multicast interface to send or receive data on.
 ---
 ---@param  udp            uv.uv_udp_t
@@ -2643,6 +2921,7 @@ function uv.udp_set_membership(udp, multicast_addr, interface_addr, membership) 
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.udp_set_multicast_interface(udp, interface_addr) end
+
 
 --- Set IP multicast loop flag. Makes multicast packets loop back to local
 --- sockets.
@@ -2654,6 +2933,7 @@ function uv.udp_set_multicast_interface(udp, interface_addr) end
 ---@return uv.error.name|nil err_name
 function uv.udp_set_multicast_loop(udp, on) end
 
+
 --- Set the multicast ttl.
 ---
 --- `ttl` is an integer 1 through 255.
@@ -2664,6 +2944,7 @@ function uv.udp_set_multicast_loop(udp, on) end
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.udp_set_multicast_ttl(udp, ttl) end
+
 
 --- Set membership for a source-specific multicast group. `multicast_addr` is multicast
 --- address to set membership for. `interface_addr` is interface address. `source_addr`
@@ -2679,6 +2960,7 @@ function uv.udp_set_multicast_ttl(udp, ttl) end
 ---@return uv.error.name|nil err_name
 function uv.udp_set_source_membership(udp, multicast_addr, interface_addr, source_addr, membership) end
 
+
 --- Set the time to live.
 ---
 --- `ttl` is an integer 1 through 255.
@@ -2689,6 +2971,7 @@ function uv.udp_set_source_membership(udp, multicast_addr, interface_addr, sourc
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.udp_set_ttl(udp, ttl) end
+
 
 --- Same as `uv.udp_send()`, but won't queue a send request if it can't be
 --- completed immediately.
@@ -2702,6 +2985,7 @@ function uv.udp_set_ttl(udp, ttl) end
 ---@return uv.error.name|nil err_name
 function uv.udp_try_send(udp, data, host, port) end
 
+
 --- Un-reference the given handle. References are idempotent, that is, if a handle
 --- is not referenced calling this function again will have no effect.
 ---
@@ -2709,6 +2993,7 @@ function uv.udp_try_send(udp, data, host, port) end
 ---
 ---@param handle uv.uv_handle_t
 function uv.unref(handle) end
+
 
 --- Update the event loop's concept of "now". Libuv caches the current time at the
 --- start of the event loop tick in order to reduce the number of time-related
@@ -2719,12 +3004,14 @@ function uv.unref(handle) end
 --- subjective but probably on the order of a millisecond or more.
 function uv.update_time() end
 
+
 --- Returns the current system uptime in seconds.
 ---
 ---@return number|nil success
 ---@return uv.error.message|nil err
 ---@return uv.error.name|nil err_name
 function uv.uptime() end
+
 
 --- Returns the libuv version packed into a single integer. 8 bits are used for each
 --- component, with the patch number stored in the 8 least significant bits. For
@@ -2733,11 +3020,13 @@ function uv.uptime() end
 ---@return integer
 function uv.version() end
 
+
 --- Returns the libuv version number as a string. For example, this would be "1.2.3"
 --- in libuv 1.2.3. For non-release versions, the version suffix is included.
 ---
 ---@return string
 function uv.version_string() end
+
 
 --- Walk the list of handles: `callback` will be executed with each handle.
 ---
@@ -2752,6 +3041,7 @@ function uv.version_string() end
 ---
 ---@param callback uv.walk.callback
 function uv.walk(callback) end
+
 
 --- Write data to stream.
 ---

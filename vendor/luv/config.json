@@ -1,8 +1,8 @@
 {
-  "files": [],
-  "words": [
-    "require.*'luv'.*",
-    "require.*\"luv\".*"
-  ],
-  "settings": {}
+    "files" : [],
+    "words" : [
+        "require.*'luv'.*",
+        "require.*\"luv\".*"
+    ],
+    "settings" : {}
 }
